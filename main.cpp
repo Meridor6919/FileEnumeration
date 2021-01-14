@@ -50,12 +50,12 @@ int main()
 
 	for (int i = 0; i < number_of_files; ++i)
 	{
-		std::cout << file_names[i] <<'\n';
 		if (std::rename(file_names[i].c_str(), (NumberAsString(i+1, number_of_decimals) + " - " + file_names[i]).c_str()))
 		{
-			std::cout << "Error";
+			#pragma warning(suppress : 4996)
+			std::cout << "Error with: " << file_names[i] <<" "<< strerror(errno)<<'\n';
 		}
 	}
-
+	std::cout << "File enumeration completed!";
 	std::cin.get();
 }
